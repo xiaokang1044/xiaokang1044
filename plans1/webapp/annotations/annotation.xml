@@ -1,0 +1,231 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Analytics.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/odata/v4/PlanService/$metadata">
+        <edmx:Include Namespace="PlanService"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+            <Annotations Target="PlanService.Plans">
+                <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Week "/>
+                                    <PropertyValue Property="Value" Path="weekId"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="User"/>
+                                    <PropertyValue Property="Value" Path="userId"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Project"/>
+                                    <PropertyValue Property="Value" Path="projectId"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Task Detail"/>
+                                    <PropertyValue Property="Value" Path="taskDetail"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Plan Hours"/>
+                                    <PropertyValue Property="Value" Path="planHours"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Actual Hours"/>
+                                    <PropertyValue Property="Value" Path="actualHours"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="GeneratedFacet1"/>
+                            <PropertyValue Property="Label" String="General"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Description"/>
+                            <PropertyValue Property="ID" String="Description"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Description"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Remark"/>
+                            <PropertyValue Property="ID" String="Remark"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Remark"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Week"/>
+                            <PropertyValue Property="Value" Path="weekId"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="User "/>
+                            <PropertyValue Property="Value" Path="userId"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Project"/>
+                            <PropertyValue Property="Value" Path="projectId"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="planHours"/>
+                            <PropertyValue Property="Label" String="Plan Hours"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="actualHours"/>
+                            <PropertyValue Property="Label" String="Actual Hours"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="taskDetail"/>
+                            <PropertyValue Property="Label" String="Task Detail"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="taskDescription"/>
+                            <PropertyValue Property="Label" String="Task Description"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Remark"/>
+                            <PropertyValue Property="Value" Path="remark"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Action" String="PlanService.EntityContainer/copyPlans"/>
+                            <PropertyValue Property="Label" String="Copy"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="Analytics.AggregatedProperty" Qualifier="planHours_sum">
+                    <Record Type="Analytics.AggregatedPropertyType">
+                        <PropertyValue Property="Name" String="planHours_sum"/>
+                        <PropertyValue Property="AggregatableProperty" PropertyPath="planHours"/>
+                        <PropertyValue Property="AggregationMethod" String="sum"/>
+                        <Annotation Term="Common.Label" String="planHours (Sum)"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="alpChart">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>userId</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DynamicMeasures">
+                            <Collection>
+                                <AnnotationPath>@Analytics.AggregatedProperty#planHours_sum</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Title" String="ML 2700 2800 Plan"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Description">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="taskDescription"/>
+                                    <PropertyValue Property="Label" String="taskDescription"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Remark">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="remark"/>
+                                    <PropertyValue Property="Label" String="remark"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="PlanService.Plans/weekId">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="Weeks"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="weekId"/>
+                                    <PropertyValue Property="ValueListProperty" String="ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Description"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Label" String="Item"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="false"/>
+            </Annotations>
+            <Annotations Target="PlanService.Weeks/ID">
+                <Annotation Term="Common.Text" Path="Description">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="PlanService.Plans/userId">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="Users"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="userId"/>
+                                    <PropertyValue Property="ValueListProperty" String="employeeId"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Label" String="Item"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+            </Annotations>
+            <Annotations Target="PlanService.Users/employeeId">
+                <Annotation Term="Common.Text" Path="name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="PlanService.Plans/projectId">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="Projects"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="projectId"/>
+                                    <PropertyValue Property="ValueListProperty" String="ID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Label" String="Item"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="false"/>
+            </Annotations>
+            <Annotations Target="PlanService.Projects/ID">
+                <Annotation Term="Common.Text" Path="name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="PlanService.Plans/remark">
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
