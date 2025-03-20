@@ -10,6 +10,7 @@ service PlanService {
     annotate Projects with @odata.draft.enabled @readonly;
     entity Plans    as projection on my.Plan;
     annotate Plans with @odata.draft.enabled;
+    entity Images    as projection on my.Image;
     action copyPlans();
 }
 

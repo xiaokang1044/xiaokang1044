@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.sap.cds.ql.Insert;
 import com.sap.cds.ql.Select;
+import com.sap.cds.ql.Update;
 import com.sap.cds.ql.cqn.CqnSelect;
 import com.sap.cds.services.cds.CqnService;
 import com.sap.cds.services.draft.DraftService;
@@ -46,18 +47,15 @@ public class CatalogServiceHandler implements EventHandler {
     // private DraftService draftService;
 
     // private final PersistenceService persistenceService;
-	private final DraftService draftService;
+    private final DraftService draftService;
 
-	public CatalogServiceHandler(DraftService draftService) {
-		this.draftService = draftService;
-		// this.persistenceService = persistenceService;
-	}
+    public CatalogServiceHandler(DraftService draftService) {
+        this.draftService = draftService;
+        // this.persistenceService = persistenceService;
+    }
 
     @Before(event = { CqnService.EVENT_CREATE, CqnService.EVENT_UPDATE })
     public void validatePlans(final Plans plans) throws Exception {
-        System.out.println("testxk");
-        System.out.println(plans.getProjectId());
-        System.out.println(plans.getWeekId());
         if (checkProject(plans.getProjectId())) {
             System.out.println(plans.getProjectId());
             throw new Exception("Please select correct project ID!");
@@ -66,6 +64,49 @@ public class CatalogServiceHandler implements EventHandler {
         if (checkWeek(plans.getWeekId())) {
             System.out.println(plans.getWeekId());
             throw new Exception("Please select correct project ID!");
+        }
+
+    };
+
+    @Before(event = { CqnService.EVENT_DELETE, CqnService.EVENT_UPDATE, CqnService.EVENT_CREATE })
+    public void delete(final Plans plans) throws Exception {
+        String email = "test";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            // 假设邮箱地址存储在用户名中
+            email = userDetails.getUsername();
+            String[] parts = email.split("/");
+            if (parts.length > 2) {
+                email = parts[2];
+            }
+        }else{
+            throw new Exception("Fail to get authorization information!");
+        }
+        final String femail = email;
+        System.out.println(email);
+        String userId = "";
+        if (plans != null) {
+
+            userId = plans.getUserId();
+            final String fuserId = userId;
+            // 请求人
+            List<Member> members = db.run(Select.from(Member_.class).where(e -> e.email().eq(femail)))
+                    .listOf(Member.class);
+            // 单子编辑的人
+            List<Member> members2 = db.run(Select.from(Member_.class).where(e -> e.employeeId().eq(fuserId)))
+                    .listOf(Member.class);
+            if (members.size() == 0) {
+                throw new Exception("Please contect adminstrtor to maintain employee data!");
+            } else {
+                // 自己或者管理员阔以修改相应单据内容
+                if (email.equals(members2.get(0).getEmail()) || members.get(0).getIsAdmin()) {
+
+                } else {
+                    throw new Exception("Please do not edit other's Plans!");
+                }
+            }
+
         }
 
     };
@@ -90,11 +131,11 @@ public class CatalogServiceHandler implements EventHandler {
         return true;
     }
 
-    @On(event = "copyPlans" )
+    @On(event = "copyPlans")
     public void copyPlans(CopyPlansContext context) throws Exception {
 
         System.out.println("testxk");
-        // UserInfo userInfo =  context.getUserInfo();
+        // UserInfo userInfo = context.getUserInfo();
         // String email = userInfo.getId();
         String email = "test";
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -104,37 +145,40 @@ public class CatalogServiceHandler implements EventHandler {
             email = userDetails.getUsername();
             String[] parts = email.split("/");
             if (parts.length > 2) {
-                email =  parts[2];
+                email = parts[2];
             }
         }
         final String femail = email;
         System.out.println("email:" + email);
-        List<Member> members= db.run( Select.from(Member_.class).where(e -> e.email().eq(femail))).listOf(Member.class);
+        List<Member> members = db.run(Select.from(Member_.class).where(e -> e.email().eq(femail))).listOf(Member.class);
         if (members.size() == 0) {
-            throw new Exception("User information not found Please contact system Administrator jeremy_m_li@wistron.com");
+            throw new Exception(
+                    "User information not found Please contact system Administrator jeremy_m_li@wistron.com");
         }
+
         String name = members.get(0).getEmployeeId();
         // //获取当前周数
         String weekId = getWeek();
         String lastWeekId = getLastWeek();
-        //减一周 然后去select
+        // 减一周 然后去select
 
-        // 然后copy 数据   存成 draft
-        // List<Plans> plans= db.run( Select.from(Plans_.class).where(e -> e.userId().eq(name).and(e.week().equals(weekId))) ).listOf(Plans.class);
+        // 然后copy 数据 存成 draft
+        // List<Plans> plans= db.run( Select.from(Plans_.class).where(e ->
+        // e.userId().eq(name).and(e.week().equals(weekId))) ).listOf(Plans.class);
         List<Plans> plans = db.run(Select.from(Plans_.class)
                 .where(e -> e.userId().eq(name).and(e.weekId().eq(lastWeekId))))
                 .listOf(Plans.class);
-                plans.forEach(e -> e.setWeekId(weekId));
-        // Plans plan = Plans.create();
-        // plan.setProjectId("1");
-        // plan.setWeekId("1");
-        // plan.setUserId("Xiaokang Bai");
-        // draftService.run(Insert.into(Plans_.class).entry(plan));
+        plans.forEach(e -> e.setWeekId(weekId));
+
+        if (plans.size() == 0) {
+            throw new Exception("No found user last week Plans!");
+        }
+
         draftService.newDraft(Insert.into(Plans_.class).entries(plans));
         context.setCompleted();
     };
 
-    public String getWeek(){
+    public String getWeek() {
         LocalDate currentDate = LocalDate.now();
         LocalDate startOfWeek = currentDate.with(DayOfWeek.MONDAY);
         LocalDate endOfWeek = currentDate.with(DayOfWeek.SUNDAY);

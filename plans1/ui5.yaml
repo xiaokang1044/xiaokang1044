@@ -18,6 +18,8 @@ server:
         backend:
           - path: /odata
             url: https://wistron-corporation-es-dev-dev-zdep-jobs-srv.cfapps.jp20.hana.ondemand.com
+          - path: /images
+            url: https://wistron-corporation-es-dev-dev-zdep-jobs-srv.cfapps.jp20.hana.ondemand.com
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

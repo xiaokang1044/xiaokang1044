@@ -12,7 +12,9 @@ public class AppSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-          .securityMatcher(AntPathRequestMatcher.antMatcher("/public/**"))
+        
+        // .securityMatcher(AntPathRequestMatcher.antMatcher("/images/**"))
+        //   .securityMatcher(AntPathRequestMatcher.antMatcher("/public/**"))
           .securityMatcher(AntPathRequestMatcher.antMatcher("/odata/**"))
           .securityMatcher(AntPathRequestMatcher.antMatcher("/rest/**"))
           .csrf(c -> c.disable()) // don't insist on csrf tokens in put, post etc.

@@ -68,6 +68,10 @@
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="member/photo"/>
+                            <PropertyValue Property="Label" String=" "/>
+                        </Record>
+                        <Record Type="UI.DataField">
                             <PropertyValue Property="Label" String="Week"/>
                             <PropertyValue Property="Value" Path="weekId"/>
                         </Record>
@@ -101,7 +105,7 @@
                         </Record>
                         <Record Type="UI.DataFieldForAction">
                             <PropertyValue Property="Action" String="PlanService.EntityContainer/copyPlans"/>
-                            <PropertyValue Property="Label" String="Copy"/>
+                            <PropertyValue Property="Label" String="Copy From Lastweek"/>
                         </Record>
                     </Collection>
                 </Annotation>
@@ -126,7 +130,15 @@
                                 <AnnotationPath>@Analytics.AggregatedProperty#planHours_sum</AnnotationPath>
                             </Collection>
                         </PropertyValue>
-                        <PropertyValue Property="Title" String="ML 2700 2800 Plan"/>
+                        <PropertyValue Property="Title" String="{@i18n>sapDepartmentJob}"/>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Dimension" PropertyPath="userId"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
                     </Record>
                 </Annotation>
                 <Annotation Term="UI.FieldGroup" Qualifier="Description">
@@ -135,7 +147,7 @@
                             <Collection>
                                 <Record Type="UI.DataField">
                                     <PropertyValue Property="Value" Path="taskDescription"/>
-                                    <PropertyValue Property="Label" String="taskDescription"/>
+                                    <PropertyValue Property="Label" String="TaskDescription"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>
@@ -147,7 +159,7 @@
                             <Collection>
                                 <Record Type="UI.DataField">
                                     <PropertyValue Property="Value" Path="remark"/>
-                                    <PropertyValue Property="Label" String="remark"/>
+                                    <PropertyValue Property="Label" String="Remark"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>
@@ -189,6 +201,9 @@
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="userId"/>
                                     <PropertyValue Property="ValueListProperty" String="employeeId"/>
                                 </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="email"/>
+                                </Record>
                             </Collection>
                         </PropertyValue>
                         <PropertyValue Property="Label" String="Item"/>
@@ -211,6 +226,9 @@
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="projectId"/>
                                     <PropertyValue Property="ValueListProperty" String="ID"/>
                                 </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
                             </Collection>
                         </PropertyValue>
                         <PropertyValue Property="Label" String="Item"/>
@@ -220,10 +238,19 @@
             </Annotations>
             <Annotations Target="PlanService.Projects/ID">
                 <Annotation Term="Common.Text" Path="name">
-                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/>
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextSeparate"/>
                 </Annotation>
             </Annotations>
             <Annotations Target="PlanService.Plans/remark">
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+            <Annotations Target="PlanService.Users/photo">
+                <Annotation Term="UI.IsImageURL" Bool="true"/>
+            </Annotations>
+            <Annotations Target="PlanService.Plans/taskDescription">
+                <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+            <Annotations Target="PlanService.Plans/taskDetail">
                 <Annotation Term="UI.MultiLineText" Bool="true"/>
             </Annotations>
         </Schema>

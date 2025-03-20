@@ -11,7 +11,17 @@ entity Member : managed {
   key employeeId : String;
       name       : String;
       email      : String;
+      photo      : String;
+      isAdmin    : Boolean default false;
 }
+
+entity Image : managed {
+  key ID          : String(3);
+      Name        : String(30);
+      ImageData   : LargeBinary; // 用于存储图片的二进制数据
+      Description : String(255);
+}
+
 
 entity Project : managed {
   key ID : String;
@@ -30,8 +40,8 @@ entity Plan : managed {
                            on project.ID = $self.projectId;
       taskDescription : String;
       taskDetail      : String;
-      planHours       : Integer;
-      actualHours     : Integer;
+      planHours       : Decimal(3, 1);
+      actualHours     : Decimal(3, 1);
       remark          : String;
 }
 

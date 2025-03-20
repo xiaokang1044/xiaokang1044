@@ -3,6 +3,8 @@
     "tenant-mode": "dedicated",
     "scopes": [],
     "attributes": [],
-    "role-templates": []
-    
+    "role-templates": [],
+    "oauth2-configuration":{
+      "credential-types":["instance-secret"]
+    }
   }

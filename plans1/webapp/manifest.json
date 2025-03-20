@@ -50,6 +50,9 @@
       }
     }
   },
+  "sap.platform.cf":{
+    "ui5VersionNumber":"1.120.27"
+  },
   "sap.ui": {
     "technology": "UI5",
     "icons": {
@@ -152,6 +155,13 @@
                     "type": "ResponsiveTable",
                     "enableExport": true,
                     "widthIncludingColumnHeader": true
+                  },
+                  "actions": {
+                    "DataFieldForAction::PlanService.EntityContainer::copyPlans": {
+                      "afterExecution": {
+                        "enableAutoScroll": true
+                      }
+                    }
                   }
                 }
               },

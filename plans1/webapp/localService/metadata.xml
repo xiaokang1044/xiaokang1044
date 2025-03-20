@@ -46,6 +46,8 @@
                 <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
                 <Property Name="employeeId" Type="Edm.String" Nullable="false"/>
                 <Property Name="name" Type="Edm.String"/>
+                <Property Name="email" Type="Edm.String"/>
+                <Property Name="photo" Type="Edm.String"/>
                 <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
                 <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
                 <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
