@@ -63,7 +63,7 @@ public class CatalogServiceHandler implements EventHandler {
 
         if (checkWeek(plans.getWeekId())) {
             System.out.println(plans.getWeekId());
-            throw new Exception("Please select correct project ID!");
+            throw new Exception("Please select correct week ID!");
         }
 
     };

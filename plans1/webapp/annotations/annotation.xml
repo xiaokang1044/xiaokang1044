@@ -31,6 +31,10 @@
                                     <PropertyValue Property="Value" Path="projectId"/>
                                 </Record>
                                 <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="project/name"/>
+                                    <PropertyValue Property="Label" String="Project Name"/>
+                                </Record>
+                                <Record Type="UI.DataField">
                                     <PropertyValue Property="Label" String="Task Detail"/>
                                     <PropertyValue Property="Value" Path="taskDetail"/>
                                 </Record>
@@ -82,6 +86,10 @@
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Label" String="Project"/>
                             <PropertyValue Property="Value" Path="projectId"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="project/name"/>
+                            <PropertyValue Property="Label" String="Project Name"/>
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="planHours"/>
@@ -238,7 +246,7 @@
             </Annotations>
             <Annotations Target="PlanService.Projects/ID">
                 <Annotation Term="Common.Text" Path="name">
-                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextSeparate"/>
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
                 </Annotation>
             </Annotations>
             <Annotations Target="PlanService.Plans/remark">
@@ -252,6 +260,9 @@
             </Annotations>
             <Annotations Target="PlanService.Plans/taskDetail">
                 <Annotation Term="UI.MultiLineText" Bool="true"/>
+            </Annotations>
+            <Annotations Target="PlanService.Projects/name">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
             </Annotations>
         </Schema>
     </edmx:DataServices>

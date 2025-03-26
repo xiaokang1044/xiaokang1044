@@ -1,8 +1,12 @@
+
 {
     "sql": {
         "native_hana_associations": false
     },
     "requires": {
         "db": "hana"
+    },
+    "hana" : {
+    "deploy-format": "hdbtable"
     }
 }
