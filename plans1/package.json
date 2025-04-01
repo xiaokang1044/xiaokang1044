@@ -32,5 +32,8 @@
     "undeploy": "cf undeploy zdepplans1 --delete-services --delete-service-keys --delete-service-brokers"
   },
   "sapuxLayer": "CUSTOMER_BASE",
-  "sapux": true
+  "sapux": true,
+  "dependencies": {
+    "plans1": "file:"
+  }
 }

@@ -5,15 +5,17 @@
   "license": "ISC",
   "repository": "<Add your repository here>",
   "devDependencies": {
-    "@sap/cds-dk": "7.9.3",
     "@sap/cds-compiler": "^4.9.4",
-    "rimraf": "^5.0.5",
-    "mbt": "^1.2.29"
+    "@sap/cds-dk": "7.9.3",
+    "mbt": "^1.2.29",
+    "rimraf": "^5.0.5"
   },
-
   "scripts": {
     "undeploy": "cf undeploy zdep_jobs --delete-services --delete-service-keys --delete-service-brokers",
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
     "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  },
+  "dependencies": {
+    "zdep_jobs-cds": "file:"
   }
 }
