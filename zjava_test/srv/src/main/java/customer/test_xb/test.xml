@@ -1,0 +1,172 @@
+<REQUEST>
+	<HEADER>
+		<SERVICEID>
+			CCS2.0-QAS
+		</SERVICEID>
+		<AUTHORIZATIONCODE>
+			wOce5qD3
+		</AUTHORIZATIONCODE>
+		<DATACREATEDTIME>
+			20241226101532
+		</DATACREATEDTIME>
+	</HEADER>
+	<FORMDATA id="FORMDATA">
+		<SYSTEMID>
+			CCS2.0 DEV
+		</SYSTEMID>
+		<FORMTYPE>
+			CreditEvaluation
+		</FORMTYPE>
+		<FORMID>
+			26227469-be83-11ef-aa7b-eeee0a96f5af
+		</FORMID>
+		<USERID>
+			Z22080010
+		</USERID>
+		<TITLE>
+			CreditEvaluation:E202412200006
+		</TITLE>
+		<SUBJECT>
+			CCS2.0
+		</SUBJECT>
+		<MESSAGEID />
+		<CHKRESULT />
+		<APPRSUMMARY />
+		<SUMMARY>
+			<section title="Applicant information" type="List">
+				<Row>
+					<col title="Status">
+						A
+					</col>
+					<col title="Appl Date">
+						2024-12-20T11:33:15Z
+					</col>
+					<col title="No">
+						E202412200006
+					</col>
+					<col title="PIC">
+						Z17073219
+					</col>
+					<col title="Applicant">
+						Z17073219
+					</col>
+					<col title="Pre-no" />
+					<col title="Reviewer" />
+					<col title="Credit Limit Doc. No">
+						C202412110006
+					</col>
+					<col title="Customer Code">
+						0000204663
+					</col>
+					<col title="Customer Name">
+						CCCCustomer Name
+					</col>
+					<col title="Critical Account">
+						NO
+					</col>
+					<col title="AR Insurance">
+						NO
+					</col>
+					<col title="Contract">
+						NO
+					</col>
+					<col title="Guarantee">
+						1111244.00(2024-10-27-2024-11-29)OVERDUE
+					</col>
+					<col title="Production Type">
+						IABG-IA BG-PCB200
+					</col>
+					<col title="Other Group">
+						007
+					</col>
+					<col title="Special Case">
+						NO
+					</col>
+				</Row>
+			</section>
+			<section title="Body" titlecolor="orange" type="GROUP">
+				<Row>
+					<col>
+						<title>
+							Historical business relations
+						</title>
+						<section type="LIST">
+							<Row>
+								<col title="The payment behavior and AR/Payment status">
+									dd
+								</col>
+								<col title="Comments on the customer's profitability and solvency">
+									dd
+								</col>
+							</Row>
+						</section>
+					</col>
+					<col>
+						<title>
+							Comments from Accounting Department
+						</title>
+					</col>
+					<col>
+						<title>
+							Attachments
+						</title>
+						<section type="LIST">
+							<Row>
+								<col title="Information of credit standing">
+									YES
+								</col>
+								<col title="Flooring plan(or factoring, security, collateral)">
+									NO
+								</col>
+								<col title="Others">
+									YES
+								</col>
+								<col title="Annual report over the past two years-Single">
+									NO
+								</col>
+								<col title="Financial  Report (Audit)-Consolidated">
+									NO
+								</col>
+								<col title="Financial  Report (Unaudit)-Consolidated">
+									NO
+								</col>
+								<col title="Financial  Report (Unaudit)-Single">
+									NO
+								</col>
+								<col title="Financial  Report (Audit)-Single">
+									NO
+								</col>
+								<col title="Annual report over the past two years-Consolidated">
+									NO
+								</col>
+							</Row>
+						</section>
+					</col>
+					<col>
+						<title>
+							File attachment(s)
+						</title>
+						<section type="LIST">
+							<Row>
+								<col title="File1:">
+									Customer Credit Eval 1.jpg
+								</col>
+							</Row>
+						</section>
+					</col>
+					<col>
+						<title>
+							Fin Report
+						</title>
+					</col>
+					<col>
+						<title>
+							Approvelist
+						</title>
+					</col>
+				</Row>
+			</section>
+		</SUMMARY>
+		<ATTACHLIST />
+	</FORMDATA>
+</REQUEST>

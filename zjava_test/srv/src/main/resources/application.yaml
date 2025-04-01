@@ -1,0 +1,14 @@
+---
+spring:
+  config.activate.on-profile: default
+  mail:
+    host: smtp.office365.com # 配置 smtp 服务器地址
+    port: 587 # smtp 服务器的端口
+    protocol: smtp
+    default-encoding: UTF-8 # 配置邮件编码
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+cds:
+  datasource:
+    auto-config.enabled: false

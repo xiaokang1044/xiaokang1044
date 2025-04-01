@@ -1,0 +1,18 @@
+# Generated manifest.yml based on template version 0.1.0
+# appName = zvcfapi_common
+# language=java
+# multitenancy=false
+---
+applications:
+# -----------------------------------------------------------------------------------
+# Backend Service
+# -----------------------------------------------------------------------------------
+- name: zvcfapi_common-srv
+  random-route: true  # for development only
+  path: srv/target/zvcfapi_common-exec.jar
+  memory: 1G
+  disk_quota: 512M
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
+  buildpack: java_buildpack
+

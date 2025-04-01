@@ -1,0 +1,7 @@
+{
+    "xsappname": "zvcfapi_common-cds",
+    "tenant-mode": "dedicated",
+    "scopes": [],
+    "attributes": [],
+    "role-templates": []
+}

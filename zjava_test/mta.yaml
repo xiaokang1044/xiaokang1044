@@ -1,0 +1,58 @@
+_schema-version: '3.1'
+ID: zvcfapi_common
+version: 1.0.0-SNAPSHOT
+description: "zvcfapi_common application"
+parameters:
+  enable-parallel-deployments: true
+modules:
+  - name: zvcfapi_common-srv
+    type: java
+    path: srv
+    parameters:
+      buildpack: java_buildpack
+    properties:
+      SPRING_PROFILES_ACTIVE: cloud
+    build-parameters:
+      builder: custom
+      commands:
+        - mvn clean package -DskipTests=true
+      build-result: target/*-exec.jar
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: zvcfapi_common-db
+      - name: CommonWorkflowService_destination
+      - name: zvcfapi_common-xsuaa
+
+  - name: zvcfapi_common-db-deployer
+    type: hdb
+    path: db
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: custom
+      commands:
+        - npm run build
+    requires:
+      - name: zvcfapi_common-db
+
+resources:
+  - name: zvcfapi_common-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+    properties:
+      hdi-service-name: ${service-name}
+  - name: CommonWorkflowService_destination
+    type: destination
+  - name: zvcfapi_common-xsuaa
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application
+      service-keys:
+        - name: zvcfapi_common-xsuaa-key
+    type: com.sap.xs.uaa
